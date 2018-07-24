@@ -16,18 +16,18 @@ class LinkList{
 	private:
 		ListNode<elementype>* head;
 		int MAXSIZE;
+		void InsertNode(elementype Key,int position);
+		void DeleteNode(int position);
 	public:
 		LinkList(elementype* A,int SIZE);
 		ListNode<elementype>* BuildLinkList();
 		bool IsEmpty();
 		void Traversal();
 		int getLength();
-		void DeleteNode(int position);
-		void InsertNode(elementype Key,int position);
 		bool FindNode(elementype key);
 		elementype FindNthNode(int position,ListNode<elementype>* p);
 		void PrintLots(ListNode<elementype>* L,ListNode<elementype>* P);
-		
+		ListNode<elementype>* Insertion(ListNode<elementype>* h,elementype Key);		
 		
 };
 template<class elementype>
