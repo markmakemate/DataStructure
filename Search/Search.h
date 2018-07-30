@@ -5,6 +5,7 @@
 #include"../LinkList/LinkList.h"
 #include<vector>
 #include<cmath>
+#include<cstring>
 using namespace std;
 template<class Elemtype>
 struct BSTreeNode{
@@ -17,114 +18,154 @@ struct BSTreeNode{
 template<class Elemtype>
 class BinarySearchTree{
 	private:
-            Elemtype* SearchingArray;
             int NUM_NODES;
-	public:
             BSTreeNode<Elemtype>* root;
-	    BinarySearchTree(Elemtype* A,int SIZE);
-           ~BinarySearchTree();
-	    void BuildBSTree();
-            void Insertion(BSTreeNode<Elemtype>* r,BSTreeNode<Elemtype>* node);
-            void AVL(BSTreeNode<Elemtype>* r);
-	    bool FindNode(Elemtype x);			
+	public:
+	    BinarySearchTree(int SIZE);
+	    BSTreeNode<Elemtype>* BuildBSTree(Elemtype* A);
+        BSTreeNode<Elemtype>* Insertion(BSTreeNode<Elemtype>* r,BSTreeNode<Elemtype>* node);
+        void AVL(BSTreeNode<Elemtype>* r);
+	    bool FindNode(BSTreeNode<Elemtype>* r,Elemtype x);	
+		void MOT(BSTreeNode<Elemtype>* r);
+		void PostOT(BSTreeNode<Elemtype>* r);
+		void PreOT(BSTreeNode<Elemtype>* r);		
 };   //Binary search tree class
 
 template<class Elemtype>
-BinarySearchTree<Elemtype>::BinarySearchTree(Elemtype* A,int SIZE){
-   typedef BSTreeNode<Elemtype> Node;
-   SearchingArray=A;
-   root=new Node(*A);
+BinarySearchTree<Elemtype>::BinarySearchTree(int SIZE){
    NUM_NODES=SIZE;
 }    //Constructor
 
-template<class Elemtype>
-BinarySearchTree<Elemtype>::~BinarySearchTree(){
-   delete[] root;
-   delete[] SearchingArray;
-}
 
 template<class Elemtype>
-void BinarySearchTree<Elemtype>::BuildBSTree(){
+BSTreeNode<Elemtype>* BinarySearchTree<Elemtype>::BuildBSTree(Elemtype* A){
    typedef BSTreeNode<Elemtype>* Node;
    typedef BSTreeNode<Elemtype> BST;
-   Node p=root;
-   Node q;
+   root=NULL;
    int COUNT=0;
    while(COUNT<NUM_NODES){
-     q=new BST(*(SearchingArray+COUNT));
-     Insertion(p,q);
+     Node q=new BST(*(A+COUNT));
+     root=Insertion(root,q);
+     COUNT++;
    }
+   return root;
 }  //Build a binary search tree
 
 template<class Elemtype>
-void BinarySearchTree<Elemtype>::Insertion(BSTreeNode<Elemtype>* r,BSTreeNode<Elemtype>* node){
+BSTreeNode<Elemtype>* BinarySearchTree<Elemtype>::Insertion(BSTreeNode<Elemtype>* r,BSTreeNode<Elemtype>* node){
    typedef BSTreeNode<Elemtype>* Node;
-   Node p=r;
-   while(p!=NULL){
-     if(p->data>node->data){
-       p=p->left;
-     }
-     else{p=p->right;}
+   if(r==NULL){
+   	r=node;
    }
-   p=node;
+   else{
+   	if(r->data>node->data){
+       r->left=Insertion(r->left,node);
+     }
+     else{r->right=Insertion(r->right,node);}
+   }
+   return r;
 }   //Insert a node
 
 template<class Elemtype>
-bool BinarySearchTree<Elemtype>::FindNode(Elemtype x){
+bool BinarySearchTree<Elemtype>::FindNode(BSTreeNode<Elemtype>* r,Elemtype x){
    typedef BSTreeNode<Elemtype>* Node;
-   Node p=root;
+   Node p=r;
    bool sign=false;
    while(p!=NULL){
-     if(p->data=x){sign=true;break;}
+     if(p->data==x){sign=true;break;}
      else if(p->data>x){p=p->left;}
      else{p=p->right;}
    }
    return sign;
 }    //Discriminate wheather node is in tree
 
-
-
-//Here is the interface of B-Tree
 template<class Elemtype>
-class B_Tree{
-};   //B-Tree class
+void  BinarySearchTree<Elemtype>::MOT(BSTreeNode<Elemtype>* r){
+	typedef BSTreeNode<Elemtype>* Node;
+	if(r!=NULL){
+		cout<<r->data<<", ";
+		MOT(r->left);
+		MOT(r->right);
+	}
+}   //Mid-order traversal
+
+template<class Elemtype>
+void BinarySearchTree<Elemtype>::PostOT(BSTreeNode<Elemtype>* r){
+	if(r!=NULL){
+		PostOT(r->left);
+		PostOT(r->right);
+		cout<<r->data<<", ";
+	}
+}   //Post order traversal
+
+template<class Elemtype>
+void BinarySearchTree<Elemtype>::PreOT(BSTreeNode<Elemtype>* r){
+	if(r!=NULL){
+		PreOT(r->left);
+		cout<<r->data<<", ";
+		PreOT(r->right);
+	}
+}
 
 
-//Here is the interface of Hash
+//Here is the class of Hash
 template<class Elemtype>
 class HashSearching:LinkList<Elemtype>{
 	typedef ListNode<Elemtype>* Node;
      private:
           int LENGTH;
-          int HashFunction(Elemtype input,int L);
+          int HashFunction(int input,int L);
+          int CollisionSolve(string selection,Elemtype A);
           vector<Node> CHAIN;
           Elemtype* HASHTABLE;
      public:
           HashSearching(int SIZE);
           void Chaining(Elemtype* A,int SIZE);
           Elemtype* LinearProbing(Elemtype* A,int SIZE);
-          Elemtype* QuadraticProbing(Elemtype* A,int SIZE,int a,int b);
+          Elemtype* QuadraticProbing(Elemtype* A,int SIZE);
           Elemtype* DoubleHash(Elemtype* A,int SIZE);
+          int Find(Elemtype A,string selection);
 };  //Hash Class
 
 template<class Elemtype>
-int HashSearching<Elemtype>::HashFunction(Elemtype input,int L){
+int HashSearching<Elemtype>::HashFunction(int input,int L){
 	int POSITION;
 	POSITION=input%L;
 }   //Hash function
 
 template<class Elemtype>
+int HashSearching<Elemtype>::CollisionSolve(string selection,Elemtype A){
+	int Position;
+	Position=HashFunction((int)A,LENGTH);	
+	if(selection=="Linear probing"){		
+		for(int i=0;i<LENGTH;i++){
+			 if(*(HASHTABLE+Position)==A){break;}
+			 else{Position=(Position+i)%LENGTH;}
+		}
+	}
+	else if(selection=="Quadratic probing"){
+		for(int i=0;i<LENGTH;i++){
+			if(*(HASHTABLE+Position)==A){break;}
+			else{Position=(Position+(int)pow(i,2))%LENGTH;}
+		}
+	}
+	return Position;
+}    //Collision Solution
+
+template<class Elemtype>
 HashSearching<Elemtype>::HashSearching(int SIZE){
 	LENGTH=SIZE*2;
+	HASHTABLE=new Elemtype[LENGTH];
 }   //Constructor
 
 template<class Elemtype>
 void HashSearching<Elemtype>::Chaining(Elemtype* A,int SIZE){
 	typedef ListNode<Elemtype>* Node;
+	typedef ListNode<Elemtype> List;
 	int POSITION;
 	Node p,q;
 	for(int i=0;i<SIZE;i++){
-		POSITION=HashFunction(*(A+i),LENGTH);
+		POSITION=HashFunction((int)*(A+i),LENGTH);
 		if(POSITION<CHAIN.size()){
 			p=CHAIN.at(POSITION);
 			q=this->Insertion(p,*(A+i));
@@ -133,19 +174,17 @@ void HashSearching<Elemtype>::Chaining(Elemtype* A,int SIZE){
 			CHAIN.pop_back();
 		}
 		else{
-			p=new ListNode<Elemtype>(*(A+i));
+			p=new List(*(A+i));
 			CHAIN.push_back(p);
 		}
 	}
-}
+}   //Chaining method
+
 template<class Elemtype>
 Elemtype* HashSearching<Elemtype>::LinearProbing(Elemtype* A,int SIZE){
 	int POSITION,COUNT=0;
-	for(int i=0;i<LENGTH;i++){
-		HASHTABLE+i=NULL;
-	}
 	while(COUNT<SIZE){
-		POSITION=HashFunction(*(A+COUNT),LENGTH);
+		POSITION=HashFunction((int)*(A+COUNT),LENGTH);
 		if(HASHTABLE+POSITION==NULL){
 			*(HASHTABLE+POSITION)=*(A+COUNT);
 		}
@@ -158,27 +197,36 @@ Elemtype* HashSearching<Elemtype>::LinearProbing(Elemtype* A,int SIZE){
 
 	}
 	return HASHTABLE;
-}
+}   //Linear probing
+
 template<class Elemtype>
-Elemtype* HashSearching<Elemtype>::QuadraticProbing(Elemtype* A,int SIZE,int a,int b){
+Elemtype* HashSearching<Elemtype>::QuadraticProbing(Elemtype* A,int SIZE){
 	int hash,COUNT=0;
 	while(COUNT<SIZE){
-		hash=HashFunction(*(A+COUNT),LENGTH);
+		hash=HashFunction((int)*(A+COUNT),LENGTH);
 		if(HASHTABLE+hash==NULL){
 		    *(HASHTABLE+hash)=*(A+COUNT);
 	    }
 	    else{
 	    	for(int i=0;i<LENGTH;i++){
-			    hash=(hash+a*i+b*(int)pow(i,2))%LENGTH;
+			    hash=(hash+(int)pow(i,2))%LENGTH;
 			    if(HASHTABLE+hash==NULL){*(HASHTABLE+hash)=*(A+COUNT);break;}
 		    }
 	    }
 	}
 	return HASHTABLE;
+}   //Quadratic probing, a and b are parameters
+
+template<class Elemtype>
+int HashSearching<Elemtype>::Find(Elemtype A,string s){
+	int h=HashFunction((int)A,LENGTH);
+	if(*(HASHTABLE+h)!=A){
+	    h=CollisionSolve(s,A);
+    }
+	return h;
 }
 
-
-//Here is the interface of Binary Search algorithm
+//Here is the Class of Binary Search algorithm
 template<class Elemtype>
 class BinarySearch{
      public:
@@ -192,8 +240,8 @@ bool BinarySearch<Elemtype>::BiSearch(Elemtype* A,Elemtype val,int LENGTH){
     if(LENGTH>1){
       POSITION=LENGTH/2;
       if(val==*(A+POSITION-1)){sign=true;}
-      if(val>*(A+POSITION-1)){Search(A+POSITION,val,LENGTH-POSITION);}
-      else{Search(A,val,POSITION-1);}
+      if(val>*(A+POSITION-1)){BiSearch(A+POSITION,val,LENGTH-POSITION);}
+      else{BiSearch(A,val,POSITION-1);}
     }
     return sign;
 }      

@@ -11,20 +11,21 @@ class Heap{
 		int MAXSIZE;
 		int Parent(int position){
 			return floor(position/2);
-		}
+		}   //Parent
 		int LeftChild(int position){
 			return 2*position+1;
-		}
+		}   //Left child
 		int RightChild(int position){
 			return 2*position+2;
-		}
-	protected:
-		void Swap(Elemtype a,Elemtype b){
-			Elemtype temp;
-	        temp=a;
-	        a=b;
-	        b=temp;
-		}
+		}   //Right child
+	public:
+		Elemtype* Swap(Elemtype* A,int begin,int end){
+			Elemtype temp=*(A+begin);
+	        *(A+begin)=*(A+end);
+	        *(A+end)=temp;
+	        return A;
+		}   //swap two elements in a series
+
 		Elemtype* BuildMaxHeap(Elemtype* A,int SIZE){
 			int L,R;
 			MAXSIZE=SIZE;
@@ -34,17 +35,18 @@ class Heap{
 				L=LeftChild(i);
 				R=RightChild(i);
 				if(*(Heap+i)<*(Heap+L)){
-					Swap(*(Heap+i),*(Heap+L));
+					Heap=Swap(Heap,i,L);
 				}
 				if(*(Heap+i)<*(Heap+R)){
-					Swap(*(Heap+i),*(Heap+R));
+					Heap=Swap(Heap,i,R);
 				}
 				if(*(Heap+L)>*(Heap+R)){
-					Swap(*(Heap+L),*(Heap+R));
+					Heap=Swap(Heap,L,R);
 				}
 			}
 			return Heap;
-		}
+		}    //Build a max heap
+
 		Elemtype* BuildMinHeap(Elemtype* A,int SIZE){
 			int L,R;
 			MAXSIZE=SIZE;
@@ -54,47 +56,71 @@ class Heap{
 				L=LeftChild(i);
 				R=RightChild(i);
 				if(*(Heap+i)>*(Heap+L)){
-					Swap(*(Heap+i),*(Heap+L));
+					Heap=Swap(Heap,i,L);
 				}
 				if(*(Heap+i)>*(Heap+R)){
-					Swap(*(Heap+i)>*(Heap+R));
+					Heap=Swap(Heap,i,R);
 				}
 				if(*(Heap+L)>*(Heap+R)){
-					Swap(*(Heap+L),*(Heap+R));
+					Heap=Swap(Heap,L,R);
 				}
 	    		}
 	  		return Heap;
-                }     
-};
+                }   //Build a min heap
+    
+};    //Declaration of heap class
+
 template<class Elemtype>
-class Sort:protected Heap<Elemtype>{
+class Sort:public Heap<Elemtype>{
 	private:
 		Elemtype* SortingArray;
 		int MAXSIZE;
+		int partition;
 	public:
 		Sort(Elemtype* A,int SIZE);
                 ~Sort();
-		void ShellSort(Elemtype* ShellNum);
+                Elemtype* InsertSort();
+		Elemtype* ShellSort(Elemtype* ShellNum);
 		Elemtype* QuickSort(Elemtype* A,int p,int r);
-		void BubbleSort();
+		Elemtype* BubbleSort();
 		Elemtype* HeapSort();
-		Elemtype* ShowQuickSort();
-                Elemtype* ShowBubbleSort();
-		int Partition(Elemtype* A,int p,int r);
-};
+		Elemtype* Partition(Elemtype* A,int p,int r);
+};    //Declaration of Sort class, inhabiting class Heap;
+
 template<class Elemtype>
 Sort<Elemtype>::Sort(Elemtype* A,int SIZE){
 	MAXSIZE=SIZE;
 	SortingArray=new Elemtype[MAXSIZE];
 	SortingArray=A;
-}
+}    //Constructor
 
 template<class Elemtype>
 Sort<Elemtype>::~Sort(){
   delete[] SortingArray;
-}
+}    //
+
 template<class Elemtype>
-void Sort<Elemtype>::ShellSort(Elemtype* ShellNum){
+Elemtype* Sort<Elemtype>::InsertSort(){
+  Elemtype* T=SortingArray;
+  int count=1;
+  for(int i=0;i<MAXSIZE;i++){
+    for(int j=0;j<count;j++){
+      if(*(T+j)>*(T+i)){
+        T=this->Swap(T,j,i);
+      }
+    }
+    count++;
+  }
+  return T;
+}   //Insert sort
+    
+
+template<class Elemtype>
+Elemtype* Sort<Elemtype>::BubbleSort(){
+}    //Bubble Sort
+  
+template<class Elemtype>
+Elemtype* Sort<Elemtype>::ShellSort(Elemtype* ShellNum){
 	int COUNT=sizeof(ShellNum)/sizeof(*ShellNum);
 	Elemtype* T=SortingArray;
 	int shellnum;
@@ -103,46 +129,40 @@ void Sort<Elemtype>::ShellSort(Elemtype* ShellNum){
 		if(shellnum<MAXSIZE){
 			for(int j=0;j<MAXSIZE-*(ShellNum+i);j++){
 			   if(*(T+j)>*(T+j+shellnum)){
-				 this-> Swap(*(T+j),*(T+j+shellnum));
+				 T=this-> Swap(T,j,j+shellnum);
 			    }
 		    }
 	    }
 		else{throw "ERROR,OUT OF RANGE!";break;} 
     }
-}
+    return T;
+}    //Shell Sort
 
 template<class Elemtype>
 Elemtype* Sort<Elemtype>::QuickSort(Elemtype* A,int p,int r){
 	if(p<r){
-	    int q=Partition(A,p,r);
-	    QuickSort(A,p,q-1);
-	    QuickSort(A,q+1,r);
+	    A=Partition(A,p,r);
+	    A=QuickSort(A,p,partition);
+	    A=QuickSort(A,partition+1,r);
     }
     return A;
-}
-template<class Elemtype>
-Elemtype* Sort<Elemtype>::ShowQuickSort(){
-	QuickSort(SortingArray,1,MAXSIZE);
-	Elemtype* T=SortingArray;
-	return T;
-}
+}   //Quick Sort
 
 template<class Elemtype>
-int Sort<Elemtype>::Partition(Elemtype* A,int p,int r){
+Elemtype* Sort<Elemtype>::Partition(Elemtype* A,int p,int r){
 	r=r-1;
 	p=p-1;
 	Elemtype x=*(A+r);
-	int i=p-1;
+	partition=p-1;
 	for(int j=p;j<=r;j++){
 	  if(*(A+j)<=x){
-	      i++;
-	      this->Swap(*(A+i),*(A+j));
+	      partition++;
+	      A=this->Swap(A,partition,j);
 	  }
 	}
-	i=i+1;
-	this->Swap(*(A+i),*(A+r));
-	return i+1;
-}
+	A=this->Swap(A,partition+1,r);
+	return A;
+}    //Partition
 
 template<class Elemtype>
 Elemtype* Sort<Elemtype>::HeapSort(){
@@ -150,15 +170,14 @@ typedef Elemtype* Row;
         int SIZE=MAXSIZE-1;
         Heap<Elemtype> H;
         Row temp=H.BuildMaxHeap(SortingArray,MAXSIZE);
-        Row result=new Row[MAXSIZE];
+        Row result=new Elemtype[MAXSIZE];
         while(SIZE>0){
                 *(result+SIZE)=*temp;
-                H.Swap(*(temp+SIZE),*temp);
+                temp=H.Swap(temp,SIZE,0);
                 SIZE--;
-                H.BuildMaxHeap(temp,SIZE);
+                temp=H.BuildMaxHeap(temp,SIZE);
         }
         *result=*temp;
-        delete[] temp;
         return result;
-}
+}    //Heap Sort
 #endif
