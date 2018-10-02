@@ -134,7 +134,7 @@ RBTreeNode<Elemtype>* RedBlackTree<Elemtype>::RBFixup(RBTreeNode<Elemtype>* r,RB
 	typedef RBTreeNode<Elemtype> RBT;
 	RBT* y;
 	if(Node!=NULL&&Node->parent!=NULL&&Node->parent->parent!=NULL){
-		if (Node->parent->color == "Red") {
+		while (Node->parent->color == "Red") {
 			if (Node->parent == Node->parent->parent->left) {
 				y = Node->parent->parent->right;
 				if (y->color == "Red") {
@@ -150,7 +150,7 @@ RBTreeNode<Elemtype>* RedBlackTree<Elemtype>::RBFixup(RBTreeNode<Elemtype>* r,RB
 				Node->parent->color = "Black";
 				Node->parent->parent->color = "Red";
 				RightRotation(r, Node);
-				RBFixup(r, Node);
+				r=RBFixup(r, Node);
 			}
 			else if (Node->parent == Node->parent->parent->right) {
 				y = Node->parent->parent->left;
@@ -167,15 +167,11 @@ RBTreeNode<Elemtype>* RedBlackTree<Elemtype>::RBFixup(RBTreeNode<Elemtype>* r,RB
 				Node->parent->color = "Black";
 				Node->parent->parent->color = "Red";
 				LeftRotation(r, Node);
-				RBFixup(r, Node);
+				r=RBFixup(r, Node);
 			}
 		}
 	}
-	else{
-		r->color = "Black";
-	}
 	return r;
-	
 }   //Fix up a Red-Black tree
 
 #endif
