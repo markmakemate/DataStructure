@@ -33,9 +33,9 @@ Method:<br/>
 3. Transplant<br/>
 * AVL Tree
 ## Graph
-Classes:<br/>
+<br/>Classes:<br/>
 * Graph object
-* Graph Algorithms(Interfaces provided, Graph object call)
+* Graph Algorithms: Interfaces provided, Graph object call<br/>
 Methods:<br/>
 * Minimum-spanning-tree: Kruskal+Prim
 * Single source Shortest path: Dijkstra, Bellman Ford
