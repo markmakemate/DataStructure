@@ -15,27 +15,31 @@ Methods:<br/>
 * Heap Sort(Max+Min)
 * Bubble Sort
 * Insert Sort
-classes:<br/>
-* Heap(Interfaces Provided, Heap object call)
+Classes:<br/>
+* Heap:Interfaces Provided
+* HeapProcessor: Implement interfaces in Heap class. 
 ## Search Algorithms
 * Binary Search Tree, a single node defined by struct
 * B-Tree
 * Binary Search: recursion
 * Hash(Interfaces provided, HashTable object call)<br/>
 1. Open Addressing: Linear probing, Double probing<br/>
-2. Chaining<br/>
+2. Chaining: Override LinkList<br/>
 3. Hash Function: n mod m(m is the size of hash table)<br/>
-4. Hash Table class
-* Red-Black Tree
-Method:<br/>
+4. Hash Table class<br/>
+5. Collection class:<br/>
+(1) Override operator {}, function as a dictionary<br/>
+(2) Key-Value storage model<br/>
+* Red-Black Tree:<br/>
 1. Rotation<br/>
 2. Insertion<br/>
 3. Transplant<br/>
+4. Mixup<br/>
 * AVL Tree
 ## Graph
 <br/>Classes:<br/>
-* Graph object
-* Graph Algorithms: Interfaces provided, Graph object call<br/>
+* Graph: Interfaces provided
+* Graph Algorithms: Implement interfaces in Graph class. 
 Methods:<br/>
 * Minimum-spanning-tree: Kruskal+Prim
 * Single source Shortest path: Dijkstra, Bellman Ford
