@@ -44,7 +44,7 @@ Classes:<br/>
 2. Single source Shortest path: Dijkstra, Bellman Ford<br/>
 3. Euler circuit<br/>
 4. Critical Path<br/>
-* Grap Loader: Load a graph(Key-Value: map<>)
+* Graph Loader: Load a graph(Key-Value: map<>)
 ## Greedy Algorithms(some instances)
 * Bin packing problem
 * Nonpreemptive scheduling
