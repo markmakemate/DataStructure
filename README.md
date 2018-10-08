@@ -48,6 +48,7 @@ Classes:<br/>
 * AdjList: Container of Adjacent List
 * AdjMatrix: Container of Adjacent Matrix
 * The relationship between these classes:
+![image](https://github.com/markmakemate/DataStructure/blob/master/Relationship.png)
 ## Greedy Algorithms(some instances)
 * Bin packing problem
 * Nonpreemptive scheduling
