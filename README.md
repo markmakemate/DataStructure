@@ -49,7 +49,7 @@ Classes:<br/>
 * AdjMatrix: Container of Adjacent Matrix
 <br/>
 ### The relationship between Graph, Graph Loader, Graph Algorithms, AdjList and AdjMatrix:
-![image](https://github.com/markmakemate/DataStructure/blob/master/Relationship.jepg)
+![image](https://github.com/markmakemate/DataStructure/blob/master/Relationship.jepg)<br/>
 ## Greedy Algorithms(some instances)
 * Bin packing problem
 * Nonpreemptive scheduling
