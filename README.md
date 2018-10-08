@@ -39,7 +39,7 @@ Classes:<br/>
 ## Graph
 <br/>Classes:<br/>
 * Graph: Interfaces provided
-* Graph Algorithms: Implement interfaces in Graph class. <br/>
+* Graph Algorithms: Implement interfaces in Graph class.
 1. Minimum-spanning-tree: Kruskal+Prim<br/>
 2. Single source Shortest path: Dijkstra, Bellman Ford<br/>
 3. Euler circuit<br/>
@@ -47,8 +47,7 @@ Classes:<br/>
 * Graph Loader: Load a graph(Key-Value: map<>)
 * AdjList: Container of Adjacent List
 * AdjMatrix: Container of Adjacent Matrix
-<br/>
-* The relationship between Graph, Graph Loader, Graph Algorithms, AdjList and AdjMatrix:<br/>
+* The relationship between these classes:
 ## Greedy Algorithms(some instances)
 * Bin packing problem
 * Nonpreemptive scheduling
