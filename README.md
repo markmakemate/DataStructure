@@ -45,6 +45,11 @@ Classes:<br/>
 3. Euler circuit<br/>
 4. Critical Path<br/>
 * Graph Loader: Load a graph(Key-Value: map<>)
+* AdjList: Container of Adjacent List
+* AdjMatrix: Container of Adjacent Matrix
+<br/>
+### The relationship between Graph, Graph Loader, Graph Algorithms, AdjList and AdjMatrix:
+![image](https://github.com/markmakemate/DataStructure/blob/master/Relationship.jepg)
 ## Greedy Algorithms(some instances)
 * Bin packing problem
 * Nonpreemptive scheduling
