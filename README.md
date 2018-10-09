@@ -39,7 +39,7 @@ Classes:<br/>
 ## Graph
 <br/>Classes:<br/>
 * Graph: Interfaces provided
-* Graph Algorithms: Implement interfaces in Graph class.
+* Graph Algorithms: Subclass of Graph. Implement interfaces in Graph class.
 1. Minimum-spanning-tree: Kruskal+Prim<br/>
 2. Single source Shortest path: Dijkstra, Bellman Ford<br/>
 3. Euler circuit<br/>
