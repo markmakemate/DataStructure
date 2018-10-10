@@ -3,7 +3,7 @@
 * **Template Design Pattern**
 * **Extensionability**: Parallal/Distributed Calculation
 * **Only STL imported**, no third-party library used
-* **References**:
+## References:
 1. *Introduction to Algorithms*, T.H.Cormen, etc,2006<br/>
 2. *Challenge Programming Contest*, 2013<br/>
 3. *Algorithm*, R.Sedgewick&K.Wayne, 2012<br/>
