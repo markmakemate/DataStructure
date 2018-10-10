@@ -1,7 +1,7 @@
 # DataStructure and often-used Algorithms implement in C++
 # Features:
 * **Template Design Pattern**
-* **Extenability**: Parallal/Distributed Calculation
+* **Extensionability**: Parallal/Distributed Calculation
 * **Only STL imported**, no third-party library used
 * **References**:
 1. *Introduction to Algorithms*, T.H.Cormen, etc,2006<br/>
