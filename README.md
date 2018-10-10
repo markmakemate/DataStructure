@@ -1,5 +1,12 @@
 # DataStructure and often-used Algorithms implement in C++
-# Template programming method
+# Features:
+* **Template Design Pattern**
+* **Extenability**: Parallal/Distributed Calculation
+* **Only STL imported**, no third-party library used
+* **References**:
+1. *Introduction to Algorithms*, T.H.Cormen, etc,2006<br/>
+2. *Challenge Programming Contest*, 2013<br/>
+3. *Algorithm*, R.Sedgewick&K.Wayne, 2012<br/>
 # Contents
 ## LinkList
 * Single Linklist and Double linklist objects
