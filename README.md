@@ -4,6 +4,7 @@
 * **Extensionability**: Parallal/Distributed/Multithread
 * **Only STL imported**, no third-party library imported. 
 * **OOP thinking is perfectly reflected**.
+* **Matrix class** is included
 # Improved Points:
 * **Graph and Graph Algorithms**.
 * **Hash Algorithm**.
