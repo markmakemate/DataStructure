@@ -16,7 +16,7 @@
 1. *Introduction to Algorithms: third edition*, T.H.Cormen, China Mechine Press, 2006<br/>
 2. *Challenge Programming Contest*, Post&Telecom Press, 2013<br/>
 3. *Algorithm*, R.Sedgewick&K.Wayne, Post&Telecom Press, 2012<br/>
-4. *Thingking in Java*, Bruce Eckel，China Mechine Press, 2007<br/>
+4. *Data Structure and Algorithm Analysis in C*, Mark Allen Weiss，China Mechine Press, 2004<br/>
 5. *C++ Primer Plus*,Stephen Prata, Post&Telecom Press,2015<br/>
 6. *C++ Reference*: http://www.cplusplus.com/reference/
 7. *Design Patterns: Elements of Reusable Object-Oriented Software*,Erich Gamma & Richard Helm & Ralph Johnson, China Mechine Press,2007
