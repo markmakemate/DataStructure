@@ -1,4 +1,6 @@
 # DataStructure and often-used Algorithms implement in C++
+* Platform: Windows, Linux
+* Compile Environment: Ubuntu 16.04 LTS
 # Features:
 * **Template Design Pattern**
 * **Extensionability**: Parallal/Distributed/Multithread
