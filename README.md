@@ -10,6 +10,9 @@
 2. *Challenge Programming Contest*, 2013<br/>
 3. *Algorithm*, R.Sedgewick&K.Wayne, 2012<br/>
 4. *Thingking in Java*, Bruce Eckel， 2007<br/>
+5. *C++ Primer Plus*,Stephen Prata, 2015<br/>
+6. *C++ Reference*: http://www.cplusplus.com/reference/
+7. 
 # Contents
 ## LinkList
 * Single Linklist and Double linklist objects
