@@ -6,7 +6,7 @@
 * **Graph and Graph Algorithms' implement** are improved. 
 * **OOP thinking is perfectly reflected**. 
 ## References:
-1. *Introduction to Algorithms*, T.H.Cormen, etc,2006<br/>
+1. *Introduction to Algorithms: third edition*, T.H.Cormen,2006<br/>
 2. *Challenge Programming Contest*, 2013<br/>
 3. *Algorithm*, R.Sedgewick&K.Wayne, 2012<br/>
 4. *Thingking in Java*, Bruce Eckel， 2007<br/>
