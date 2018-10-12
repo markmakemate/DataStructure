@@ -2,9 +2,13 @@
 # Features:
 * **Template Design Pattern**
 * **Extensionability**: Parallal/Distributed/Multithread
-* **Only STL imported**, no third-party library imported.
-* **Graph and Graph Algorithms' implement** are improved. 
-* **OOP thinking is perfectly reflected**. 
+* **Only STL imported**, no third-party library imported. 
+* **OOP thinking is perfectly reflected**.
+# Improved Points:
+* **Graph and Graph Algorithms**.
+* **Hash Algorithm**.
+* **Red-Black Tree**. 
+* **Matrix Class**. 
 # References:
 1. *Introduction to Algorithms: third edition*, T.H.Cormen, China Mechine Press, 2006<br/>
 2. *Challenge Programming Contest*, Post&Telecom Press, 2013<br/>
