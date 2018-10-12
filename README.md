@@ -1,6 +1,8 @@
-# DataStructure and often-used Algorithms implement in C++
+# Data Structures and often-used Algorithms in C++
 * Platform: Windows, Linux
 * Compile Environment: Ubuntu 16.04 LTS 64-bit
+# Objective:
+* Create an effective and ubiquitously available data structure and algorithms Library. 
 # Features:
 * **Template Design Pattern**
 * **Extensionability**: Parallal/Distributed/Multithread
