@@ -12,7 +12,7 @@
 4. *Thingking in Java*, Bruce Eckel， 2007<br/>
 5. *C++ Primer Plus*,Stephen Prata, 2015<br/>
 6. *C++ Reference*: http://www.cplusplus.com/reference/
-7. 
+7. *Design Patterns: Elements of Reusable Object-Oriented Software*,Erich Gamma & Richard Helm & Ralph Johnson, China Mechine Press,2007
 # Contents
 ## LinkList
 * Single Linklist and Double linklist objects
