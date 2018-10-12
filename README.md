@@ -1,12 +1,15 @@
 # DataStructure and often-used Algorithms implement in C++
 # Features:
 * **Template Design Pattern**
-* **Extensionability**: Parallal/Distributed Calculation
-* **Only STL imported**, no third-party library used
+* **Extensionability**: Parallal/Distributed/Multithread
+* **Only STL imported**, no third-party library imported.
+* **Graph and Graph Algorithms' implement** are improved. 
+* **OOP thinking is perfectly reflected**. 
 ## References:
 1. *Introduction to Algorithms*, T.H.Cormen, etc,2006<br/>
 2. *Challenge Programming Contest*, 2013<br/>
 3. *Algorithm*, R.Sedgewick&K.Wayne, 2012<br/>
+4. *Thingking in Java*, Bruce Eckel， 2007<br/>
 # Contents
 ## LinkList
 * Single Linklist and Double linklist objects
@@ -46,7 +49,7 @@ Classes:<br/>
 ## Graph
 <br/>Classes:<br/>
 * Graph: Interfaces provided
-* Graph Algorithms: Subclass of Graph. Implement interfaces in Graph class.
+* Graph Algorithms: *Subclass of Graph*. Implement interfaces in Graph class.
 1. Minimum-spanning-tree: Kruskal+Prim<br/>
 2. Single source Shortest path: Dijkstra, Bellman Ford<br/>
 3. Euler circuit<br/>
@@ -54,7 +57,7 @@ Classes:<br/>
 * Graph Loader: Load a graph(Key-Value: map<>)
 * AdjList: Container of Adjacent List
 * AdjMatrix: Container of Adjacent Matrix
-* The relationship between these classes:
+* **The Framework**:
 ![image](https://github.com/markmakemate/DataStructure/blob/master/Relationship.png)
 ## Greedy Algorithms(some instances)
 * Bin packing problem
