@@ -2,43 +2,51 @@
 #define GRAPHALGORITHMS_H
 #include<iostream>
 #include<cstdlib>
-#include "Graph.h"
-#include "DataProcessor.h"
+#include<map>
 #include<queue>
+#include "../Data_Processors/GraphLoader.h"
+#include "../Data_Processors/AdjList.h"
+#include "../Data_Processors/AdjMatrix.h"
+#include "Graph.h"
 //A class of often-used graph algorithms
 using namespace std;
-using namespace Graph;
-class GraphAlgorithms:public Graph{	
+class GraphAlgorithms:public Graph{
 	typedef double Distance;
 private:
 	double* distances;
+	Graph g;
 public:
-	GraphAlgorithms();
-	map<int,Distance> Dijkstra(Graph &g,int u);   //Dijkstra Shortest-paths Algorithm
-	Graph Prim(Graph &g);    //Prim's Minimum-spanning-tree Algorithm
-	Graph Kruskal(Graph &g); //Kruskal's Minimum-spanning-tree Algorithm
-	queue<int> TopologicalSort(Graph &g);  //Topological Sort 
-	queue<int> Bellman_Ford(Graph &g,int u); //Bellman-Ford Algorithm
-	queue<int> BFT(Graph &g); //Breadth-First Traversal
-	queue<int> DFT(Graph &g);  //Depth-First Traversal
-	int* EulerCycuit(Graph &g);   //Find Euler path
-	queue<int> CriticalPath(Graph &g);  //Find a critical path
+	GraphAlgorithms(Graph& graph);  //Constructor: Load a Graph object as parameter(must)
+	map<int,Distance> Dijkstra(int u);   //Dijkstra Shortest-paths Algorithm
+	Graph Prim();    //Prim's Minimum-spanning-tree Algorithm
+	Graph Kruskal(); //Kruskal's Minimum-spanning-tree Algorithm
+	queue<int> TopologicalSort();  //Topological Sort 
+	queue<int> Bellman_Ford(int u); //Bellman-Ford Algorithm
+	queue<int> BFT(); //Breadth-First Traversal
+	queue<int> DFT();  //Depth-First Traversal
+	int* EulerCycuit();   //Find Euler path
+	queue<int> CriticalPath();  //Find a critical path
+	queue<int> MaxFlow();
 };
-GraphAlgorithms::GraphAlgorithms() {
+GraphAlgorithms::GraphAlgorithms(Graph& graph) {
+	g=graph;
 	distances = new double[g.Vertex()];
 	for (int i = 0; i < g.Vertex(); i++) {
 		if (i != u) { *(distance + i) = -1; }
 		else { *(distance + i) = 0; }
 	}
 }
-map<int,double> GraphAlgorithms::Dijkstra(Graph &g, int u) {
+map<int,double> GraphAlgorithms::Dijkstra(int u) {
 	map<int, double> result;
 	for (int i = g.FindFirstVertex(u); g.FindNextVertex(u,i)!=-1; i = g.FindNextVertex(u, i)) {
 		if (i != -1) {
-			if (*(distances + i) >*(distances+u)+ g(u, i)||*(distances+i)==-1) {
+			if (*(distances + i) >*(distances+u)+ g(u, i)&&*(distances+i)!=-1) {
 				*(distances + i) = *(distances + u) + g(u, i);
 			}
-			return Dijkstra(g, i);
+			else if(*(distances+i)==-1){
+				*(distances+i)=g(u,i);
+			}
+			return Dijkstra(i);
 		}
 	}
 	for (int j = 0; j < g.Vertex(); j++) {
@@ -46,7 +54,7 @@ map<int,double> GraphAlgorithms::Dijkstra(Graph &g, int u) {
 	}
 	return result;
 }
-queue<int> GraphAlgorithms::TopologicalSort(Graph &g) {
+queue<int> GraphAlgorithms::TopologicalSort() {
 	queue<int> candidate;
 	queue<int> result;
 	for (int i = 0; i < g.Vertex(); i++) {
@@ -65,5 +73,14 @@ queue<int> GraphAlgorithms::TopologicalSort(Graph &g) {
 	}
 	return result;
 }
+queue<int> GraphAlgorithms::Bellman_Ford(int u){
 
+	
+}
+queue<int> GraphAlgorithms::CriticalPath(){
+
+}
+Graph GraphAlgorithms::Prim(){
+	
+}
 #endif
