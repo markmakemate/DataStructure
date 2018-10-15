@@ -1,5 +1,27 @@
-# DataStructure and often-used Algorithms implement in C++
-# Template programming method
+# Data Structures and often-used Algorithms in C++
+* Platform: Windows, Linux
+* Compile Environment: Ubuntu 16.04 LTS 64-bit
+# Objective:
+* Create an effective and ubiquitously available data structure and algorithms Library. 
+# Features:
+* **Template Design Pattern**
+* **Extensionability**: Parallal/Distributed/Multithread
+* **Only STL imported**, no third-party library imported. 
+* **OOP thinking is perfectly reflected**.
+* **Matrix class** is included
+# Improved Points:
+* **Graph and Graph Algorithms**.
+* **Hash Algorithm**.
+* **Red-Black Tree**. 
+* **Matrix Class**. 
+# References:
+1. *Introduction to Algorithms: third edition*, T.H.Cormen, China Mechine Press, 2006<br/>
+2. *Challenge Programming Contest*, Post&Telecom Press, 2013<br/>
+3. *Algorithm*, R.Sedgewick&K.Wayne, Post&Telecom Press, 2012<br/>
+4. *Data Structure and Algorithm Analysis in C*, Mark Allen Weiss，China Mechine Press, 2004<br/>
+5. *C++ Primer Plus*,Stephen Prata, Post&Telecom Press,2015<br/>
+6. *C++ Reference*: http://www.cplusplus.com/reference/
+7. *Design Patterns: Elements of Reusable Object-Oriented Software*,Erich Gamma & Richard Helm & Ralph Johnson, China Mechine Press,2007
 # Contents
 ## LinkList
 * Single Linklist and Double linklist objects
@@ -15,32 +37,40 @@ Methods:<br/>
 * Heap Sort(Max+Min)
 * Bubble Sort
 * Insert Sort
-classes:<br/>
-* Heap(Interfaces Provided, Heap object call)
+Classes:<br/>
+* Heap:Interfaces Provided
+* HeapProcessor: Implement interfaces in Heap class. 
 ## Search Algorithms
 * Binary Search Tree, a single node defined by struct
 * B-Tree
 * Binary Search: recursion
 * Hash(Interfaces provided, HashTable object call)<br/>
 1. Open Addressing: Linear probing, Double probing<br/>
-2. Chaining<br/>
+2. Chaining: Override LinkList<br/>
 3. Hash Function: n mod m(m is the size of hash table)<br/>
-4. Hash Table class
-* Red-Black Tree
-Method:<br/>
+4. Hash Table class<br/>
+5. Collection class:<br/>
+(1) Override operator {}, function as a dictionary<br/>
+(2) Key-Value storage model<br/>
+* Red-Black Tree:<br/>
 1. Rotation<br/>
 2. Insertion<br/>
 3. Transplant<br/>
+4. Mixup<br/>
 * AVL Tree
 ## Graph
 <br/>Classes:<br/>
-* Graph object
-* Graph Algorithms: Interfaces provided, Graph object call<br/>
-Methods:<br/>
-* Minimum-spanning-tree: Kruskal+Prim
-* Single source Shortest path: Dijkstra, Bellman Ford
-* Euler circuit
-* Critical Path
+* Graph: Interfaces provided
+* Graph Algorithms: *Subclass of Graph*. Implement interfaces in Graph class.
+1. Minimum-spanning-tree: Kruskal+Prim<br/>
+2. Single source Shortest path: Dijkstra, Bellman Ford<br/>
+3. Euler circuit<br/>
+4. Critical Path<br/>
+* Graph Loader: Load a graph(Key-Value: map<>)
+* AdjList: Container of Adjacent List
+* AdjMatrix: Container of Adjacent Matrix
+* **The Framework**:
+![image](https://github.com/markmakemate/DataStructure/blob/master/Relationship.png)
 ## Greedy Algorithms(some instances)
 * Bin packing problem
 * Nonpreemptive scheduling
