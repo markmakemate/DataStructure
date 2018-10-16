@@ -9,9 +9,11 @@ using namespace std;
 //Input formula: std::map<int,map<int,double> > Input={{start_vertex_1,{{adjacent_vertex_1,weight_1},...,{adjacent_vertex_N,weight_N}}},...,{start_vertex_n,{...}}}
 class GraphLoader{
     typedef map<int,map<int,double> > graph;
+    typedef map<int,double> vertex;
 public:
     graph G;
     GraphLoader(graph& Input);  //Constructor
+    void load(graph& Input);
     void clear();   //clear the loader
     int size();   //num of vertexs of graph
 };
