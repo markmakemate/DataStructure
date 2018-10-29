@@ -6,21 +6,29 @@
 using namespace std;
 //GraphLoader: A class which implements interfaces to load a graph for user
 //GraphLoader is a middleware for Graph
-//Input formula: std::map<int,map<int,double> > Input={{start_vertex_1,{{adjacent_vertex_1,weight_1},...,{adjacent_vertex_N,weight_N}}},...,{start_vertex_n,{...}}}
+//Input formula: std::map<int,pair<int,double> > Input={{start_1,(end_1,edge_1),...,(end_N,edge_N)},...,{start_M,(end_1,edge_1),...,(end_K,edge_K)}}
 class GraphLoader{
-    typedef map<int,map<int,double> > graph;
-    typedef map<int,double> vertex;
+    typedef map<int,pair<int,double> > graph;
+    typedef pair<int,double> edge;
 public:
     graph G;
     GraphLoader(graph& Input);  //Constructor
-    void load(graph& Input);
+    void load(graph& Input);   //load a graph
+    void push(graph& subgraph);   // push a subgraph
+    void insert(int u,edge E);   //insert a new edge
     void clear();   //clear the loader
-    int size();   //num of vertexs of graph
+    
 };
-GraphLoader::GraphLoader(map<int,map<int,double> >& Input){
+GraphLoader::GraphLoader(map<int,pair<int,double> >& Input){
     G=Input;
 }
 int GraphLoader::size(){
     return G.size();
+}
+void GraphLoader::load(map<int,pair<int,double> >& Input){
+    G=Input;
+}
+void GraphLoader::clear(){
+    Input.clear();
 }
 

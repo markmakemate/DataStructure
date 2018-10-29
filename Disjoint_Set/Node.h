@@ -7,8 +7,8 @@ using namespace std;
 template<class Elemtype>
 struct Node{
     Elemtype data;
-    bool tag;
-    Node<Elemtype>* Father;
-    Node(Elemtype x):data(x),Father(NULL),tag(false){}
+    int rank;
+    Node<Elemtype>* parent;
+    Node(Elemtype x,int r):data(x),parent(this),rank(r){}
 };
 #endif

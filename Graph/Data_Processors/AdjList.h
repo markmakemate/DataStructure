@@ -12,31 +12,12 @@ class AdjList{
 public:
     adjlist AL;
     void build(const GraphLoader& Input);
-    double operator()(int start,int end){
-        double result;
-		if(AL!=NULL){
-			List<double> candidate=AL[start];
-			Node<double> p=(candidate.head)->next;
-			while(p!=NULL){
-				if(p->vertex!=end){
-					p=p->next;
-				}
-				else{
-					result=p->vertex;
-				}
-			}
-			if(p==NULL){
-				throw "No end vertex!";
-			}
-		}
-        else{
-            throw "Adjacent list has not been built!";
-        }
-        return result;
-    }//Override operator (). Get the weight between start_vertex and end_vertex
     List<double> operator[](int vertex){
         return AL[vertex];
-    } //Override operator []. Get the adjacent list of vertex. 
+    } //Override operator []. Get the adjacent list of vertex.
+	double operator(int& start_vertex,int& end_vertex){
+		return AL[start_vertex][end_vertex];
+	} //Override operator (). Get the weight between start_vertex and end_vertex
 };
 void AdjList::build(const GraphLoader& Input){
     map<int,map<int,double> > single;

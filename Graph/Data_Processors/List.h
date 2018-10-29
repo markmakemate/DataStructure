@@ -19,6 +19,16 @@ public:
     void build(map<int,map<int,double> >& Input);
     void clear();
     node head();
+    Elemtype operator[](int& vertex)
+        node p=head->next;
+        while(p!=NULL){
+            if(p->vertex==vertex){
+                break;
+            }
+        }
+        return p->data;
+    }
+    bool is_traversed(int u,int v);
 };
 template<class Elemtype>
 List<Elemtype>::List(){

@@ -1,62 +1,68 @@
 #ifndef VECTOR_H
 #define VECTOR_H
-#include<vector>
-#include<cstdlib>
+#include<queue>
+#include<map>
 #include<iostream>
 using namespace std;
-template<class type_name>
+//Vector class
+template<class value_type>
 class Vector{
+    typedef map<int,value_type> raw;
+private:
+    raw Data;
+    int dimension;
 public:
-    type_name operator * (vector<type_name>& A,vector<type_name>& B);
-    vector<type_name> operator * (float& parama,vector<type_name>& B);
-    vector<type_name> operator * (vector<type_name>& A,float& parama);
-    vector<type_name> operator + (vector<type_name>& A,vector<type_name>& B);
+    Vector(){
+        dimension=0;
+    }
+    Vector(const raw& Input){
+        Data=Input;
+        dimension=Data.size();
+    }
+    void load(const raw& Input){
+        Data=Input;
+        dimension=Data.size();
+    }
+    int dim(){
+        return dimension;
+    }
+    void push(value_type element){
+        Data.insert(pair<int,value_type>(dimension,element));
+        dimension++;
+    }
+    void pop(int& index);
+    void clear(){
+        Data.clear();
+        dimension=0;
+    }
+    value_type operator[](int index){
+        return Data[index];
+    }
+    value_type operator*(Vector<value_type>& B){
+        value_type result;
+        if(dimension==B.dim()){
+            for(int i=0;i<dimension;i++){
+                result+=Data[i]*B[i];
+            }
+        }
+        else{
+            throw "error!";
+        }
+        return result;
+    }
+    Vector<value_type> operator + (Vector<value_type>& B){
+        Vector<value_type> result;
+        value_type value;
+        if(dimension==B.dim()){
+            for(int i=0;i<dimension;i++){
+                value=B[i]+Data[i];
+                result.push(value);
+            }
+        }
+        else{
+            throw "error!";
+        }
+        return result;
+    }
 };
-template<class type_name>
-type_name Vector<type_name>::operator * (vector<type_name>& A,vector<type_name>& B){
-    dimension_A=A.size();
-    dimension_B=B.size();
-    type_name result=0;
-    if(dimesion_A==dimension_B){
-        for(int i=0;i<dimension_A;i++){
-            result+=A.at(i)*B.at(i);
-        }
-    }
-    else{
-        throw "Two vectors should have a same dimension!";
-    }
-    return result;
-}
-template<class type_name>
-vector<type_name> Vector<type_name>::operator * (float& paramas,vector<type_name>& B){
-    vector<type_name>::iterator it;
-    for(it=B.begin();it!=B.end();++it){
-        *it=(*it)*paramas;
-    }
-    return B;
-}
-template<class type_name>
-vector<type_name> Vector<type_name>::operator * (vector<type_name>& A,float& paramas){
-    vector<type_name>::iterator it;
-    for(it=A.begin();it!=A.end();++it){
-        *it=(*it)*paramas;
-    }
-    return A;
-}
-template<class type_name>
-vector<type_name> Vector<type_name>::operator + (vector<type_name>& A,vector<type_name>& B){
-    vector<type_name> result;
-    vector<type_name>::iterator it_1;
-    vector<type_name>::iterator it2=B.begin();
-    if(A.size()==B.size()){
-        for(it_1=A.begin();it_1!=A.end();++it_1){
-            result.push_back((*it_1)*(*it_2));
-        }
-        ++it_2;
-    }
-    else{
-        throw "The vectors' dimensions should be the same!";
-    }
-    return result;
-}
 #endif
